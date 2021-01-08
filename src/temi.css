@@ -1,0 +1,157 @@
+.flex-column {
+  color: yellow;
+  font-size: 50px;
+  padding-top: 100px;
+}
+
+img {
+  color: white;
+  height: 100%;
+  display: block;
+  position: sticky;
+  top: 0;
+  margin-bottom: 20px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.imgsidenav {
+  /*height: 100%; /* 100% Full-height */
+
+  height: 10%;
+  /*display: block;*/
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 10px;
+  width: 50%;
+  align-content: center;
+  padding-top: 10px;
+  /*position: sticky;*/
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+.sidenavnew {
+  /* height: 100%; /* 100% Full-height */
+
+  display: flex;
+}
+.sidenav2 {
+  height: 100%; /* 100% Full-height */
+  position: static; /* Stay in place */
+  /*z-index: 1; /* Stay on top */
+  /*top: 0; /* Stay at the top */
+
+  background-color: #e5292e;
+  /* rgba(219, 223, 166, 0.534); Black*/
+
+  color: white;
+  padding: 10px;
+
+  /*overflow-y: auto;*/
+}
+
+.sidenav {
+  height: 100vh; /* 100% Full-height */
+  /*position: relative; /* Stay in place */
+  /*z-index: 1; /* Stay on top */
+  /*top: 0; /* Stay at the top */
+  /*left: 0;*/
+  flex: 10%;
+
+  /* rgba(219, 223, 166, 0.534); Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  /* padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  overflow-y: auto;
+  color: white;
+  /*position: fixed;*/
+}
+
+.sidenav1 {
+  height: 100vh;
+  /*height: 100%; /* 100% Full-height */
+  /*position: fixed; /* Stay in place */
+  /*z-index: 1; /* Stay on top */
+  /*top: 0; /* Stay at the top */
+  /*left: 0;*/
+  flex: 90%;
+  background-color: rgba(219, 223, 166, 0.534); /* Black*/
+  /* overflow-x: hidden; /* Disable horizontal scroll */
+  /*padding-top: 60px; /* Place content 60px from the top */
+  /* transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+  overflow-y: auto;
+}
+
+html {
+  font-size: small;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: small;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.sidebar {
+  max-width: 240px;
+  /*height: 100vh;*/
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-item-content {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.sidebar-item-icon {
+  margin-right: 6px;
+}
+
+.sidebar-item-text {
+  width: 100%;
+}
+
+.sidebar-item-expand-arrow {
+  font-size: 1.2rem !important;
+}
+
+.sidebar-item-expand-arrow-expanded {
+  color: #09bb12;
+  font-weight: bold;
+}
+input[type="text"],
+textarea,
+input,
+select {
+  color: Black;
+  background-color: whitesmoke;
+}
+
+textarea:focus,
+input:focus {
+  color: black;
+  background-color: whitesmoke;
+}

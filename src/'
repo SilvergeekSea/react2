@@ -1,0 +1,236 @@
+import {React, useState, useEffect} from "react";
+import Tablet from "./Table2";
+import { Nav, Button, Container, Row, Col, Table, Collapse } from "react-bootstrap";
+import './temi.css';
+import Tablet2 from './mounts1';
+import Mounts from "./mounts";
+import Packages from "./packages";
+import Network from "./network";
+import BTable from 'react-bootstrap/Table';
+import Osinfo from "./osinfo";
+import MaterialTable from 'material-table';
+import Meminfo from "./mem";
+
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useLocation
+} from "react-router-dom";
+
+// This site has 3 pages, all of which are rendered
+// dynamically in the browser (not server rendered).
+//
+// Although the page does not ever refresh, notice how
+// React Router keeps the URL up to date as you navigate
+// through the site. This preserves the browser history,
+// making sure things like the back button and bookmarks
+// work properly.
+
+export default function BasicExample() {
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function QueryParamsDemo() {
+  let query = useQuery();
+}
+
+function handlechange(e){
+ setName(e.target.value);
+// alert(e.target.value);
+}
+function handlebutton(e){
+console.log(name);
+setSearch(name)
+ alert(name);
+}
+
+handlebutton = handlebutton.bind(this);
+
+ 
+const [name, setName] = useState(''); 
+const [search, setSearch] = useState('');
+
+const mounts = Mounts();
+const packages = Packages();
+const network = Network();
+const osinfo = Osinfo();
+const meminfo = Meminfo();
+let data = [];
+
+const [allowances, setAllowances] = useState({mounts:[]});
+
+let host_name = search;
+                 const encodedValue = encodeURIComponent(search);
+                 let url2 = `http://10.1.1.172:7071/api/HttpExample?name=${encodedValue}`;
+
+  useEffect(() => {
+    fetch(`http://10.1.1.172:7071/api/HttpExample?name=${search}`)
+      .then(data => {
+        return data.json();
+      })
+      .then(data => {
+        setAllowances(data);
+      })
+      .catch(err => {
+        console.log(123123);
+      });
+  }, [search]);
+
+console.log(url2);
+
+console.log(allowances.mounts);
+
+function display_ci(ci_array){
+let  data_array =[];
+if (ci_array){
+
+Object.values(ci_array).map((entry, index) => {
+            data_array.push(entry);
+        });
+
+}
+else {
+ data_array = [];
+}
+
+return data_array;
+}
+
+
+function display_ci2(ci_array){
+let  data_array =[];
+if (ci_array){
+
+data_array.push(ci_array);
+}
+else {
+ data_array = [];
+}
+
+return data_array;
+}
+
+
+
+
+
+let mounts_data;
+//mounts_data = display_ci(allowances.mounts, data_mounts);
+mounts_data = display_ci(allowances.mounts);
+let mounts_packages = display_ci(allowances.packages);
+let network_data = display_ci(allowances.network_cards);
+ console.log(mounts_data);
+let osinfo_data = display_ci2(allowances.osinfo);
+ console.log(osinfo_data);
+let meminfo_data_real = display_ci2(allowances.mem.real);
+let meminfo_data_swap = display_ci2(allowances.mem.swap);
+let meminfo_data_cache = display_ci2(allowances.mem.cache);
+
+console.log(meminfo_data_real);
+
+const links = [
+	{'link_url': '/system','link_name':'Home'},
+	{'link_url': '/system1','link_name':'Mount'},
+	{'link_url': '/package','link_name':'Package'},
+	{'link_url': '/network', 'link_name':'Network'}
+	]
+
+const mapper=[];
+links.map((entry, index) => {mapper.push(<Link to={entry['link_url']} className="nav-link">{entry['link_name']}</Link>)});
+
+console.log(mapper);
+
+const filter1 = true;
+
+const [open, setOpen] = useState(true);
+
+  return (
+    <Router>
+      <div id="mySidenav" className="sidenav">
+       <Nav defaultActiveKey="/home" className="flex-column">
+         <Nav.Link eventKey="link-1"
+     onClick={() => setOpen(!open)}
+     aria-controls="example-collapse-text"
+     aria-expanded={open}>Home</Nav.Link>
+</Nav>
+<Collapse in={open}>
+<div className="temi" id="example-collapse-text">
+<input style={{color: "white"}} value={name} onChange={handlechange} type="text"/>
+<button onClick={handlebutton}>Click me</button>
+<Nav defaultActiveKey="/home" className="flex-column">
+{mapper}
+</Nav>
+</div>
+</Collapse>
+</div>
+<div style={{margin: "220px"}}>
+        <hr />
+
+        {/*
+          A <Switch> looks through all its children <Route>
+          elements and renders the first one whose path
+          matches the current URL. Use a <Switch> any time
+          you have multiple routes, but you want only one
+          of them to render at a time
+        */}
+        <Switch>
+          <Route exact path="/system">
+
+		<div tabIndex="0" >
+		<Container >
+			<Row>
+			<Col sm={12}>
+			<MaterialTable columns={osinfo} data={osinfo_data} title="OS Information" />
+			</Col>
+                        </Row>
+			<Row>
+			<Col sm={12}>
+			Memory Details
+			<MaterialTable columns={meminfo} data={meminfo_data_real} title="Memory Info" />
+                        <MaterialTable columns={meminfo} data={meminfo_data_swap} title="Memory Info" />
+			</Col>
+			</Row>
+			<Row>
+
+			<Col sm={12} style={{height: "50vh","overflow-y": "scroll", padding:0,margin:0}}>
+			<MaterialTable columns={osinfo} data={osinfo_data} title="CPU Details" />
+			</Col>
+			<Col sm={12}>
+		        <Table striped bordered hover  columns={osinfo} data={osinfo_data} showPagination='false' />
+			</Col>
+			</Row>
+			</Container>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+          </Route>
+          <Route exact path="/system1">
+            <Tablet2 columns={mounts} data={mounts_data} />
+          </Route>
+          <Route exact path="/package">
+          <Tablet2 columns={packages} data={mounts_packages} />
+          </Route>
+	 <Route exact path="/network">
+ 	 <Tablet2 columns={network} data={network_data} />
+	 </Route>
+
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
