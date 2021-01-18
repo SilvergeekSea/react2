@@ -52,7 +52,7 @@ import {
 
 //export default function BasicExample() {
 function BasicExample(props) {
-  console.log(props);
+  console.log("This is BasicExample", props);
   const sold = props.selectos;
   console.log(sold);
   function useQuery() {
@@ -312,40 +312,40 @@ function BasicExample(props) {
             <Container fluid={{ fluid } !== undefined ? fluid : null}>
               {Array.isArray(subItems)
                 ? subItems.map((subItem) => (
-                    <Row>
-                      <Col sm={12}>
-                        <Styles>
-                          <ReactTable
-                            columns={subItem["name"]}
-                            minRows="0"
-                            className={hj}
-                            data={subItem["data"]}
-                            defaultPageSize={subItem["pagesize"]}
-                            showPagination={subItem["showpagination"]}
-                            SubComponent={
-                              subItem["Subcomp"] !== undefined
-                                ? (row) => {
-                                    const Yu = subItem["Subcomp"]["Compo"];
-                                    const { lop } = { original: "features" };
-                                    console.log(lop);
-                                    return <Yu v={row.original} u={lop} />;
-                                  }
-                                : null
-                            }
-                            getTdProps={(state, rowInfo, column, instance) => {
-                              return {
-                                onClick: (e, temi2) => {
-                                  return temi2(e);
-                                }, //{temi2(state, rowInfo, column, instance)}   // }
-                              };
-                            }}
-                            //onClick={return alert('tope')}
-                          />
-                        </Styles>
-                        <br />
-                      </Col>
-                    </Row>
-                  ))
+                  <Row>
+                    <Col sm={12}>
+                      <Styles>
+                        <ReactTable
+                          columns={subItem["name"]}
+                          minRows="0"
+                          className={hj}
+                          data={subItem["data"]}
+                          defaultPageSize={subItem["pagesize"]}
+                          showPagination={subItem["showpagination"]}
+                          SubComponent={
+                            subItem["Subcomp"] !== undefined
+                              ? (row) => {
+                                const Yu = subItem["Subcomp"]["Compo"];
+                                const { lop } = { original: "features" };
+                                console.log(lop);
+                                return <Yu v={row.original} u={lop} />;
+                              }
+                              : null
+                          }
+                          getTdProps={(state, rowInfo, column, instance) => {
+                            return {
+                              onClick: (e, temi2) => {
+                                return temi2(e);
+                              }, //{temi2(state, rowInfo, column, instance)}   // }
+                            };
+                          }}
+                        //onClick={return alert('tope')}
+                        />
+                      </Styles>
+                      <br />
+                    </Col>
+                  </Row>
+                ))
                 : null}
             </Container>
           </Route>
@@ -375,8 +375,8 @@ function BasicExample(props) {
     ) : sidebar == "Windows" ? (
       <Windowsside />
     ) : (
-      <Windowsside />
-    );
+          <Windowsside />
+        );
   };
 
   console.log(side());
@@ -431,7 +431,7 @@ function BasicExample(props) {
 
         <div
           className="sidenav1"
-          //style={{ "margin-left": "300px" }}
+        //style={{ "margin-left": "300px" }}
         >
           <hr />
           {name} at {date_captured}
@@ -468,7 +468,7 @@ function BasicExample(props) {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
+  console.log("This is mapStateToProps", state);
   return {
     osarray: state.osarray,
     type: state.type,
