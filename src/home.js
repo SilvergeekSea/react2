@@ -390,7 +390,7 @@ function BasicExample(props) {
       <div id="mySidenav" className="sidenavnew">
         <div id="mySidenav" className="sidenav">
           <div>
-            <img className="imgsidenav" src="Coles-logo-header.svg" />
+            <img className="imgsidenav" src="logo192.png" />
           </div>
           <div className="sidenav2">
             <input
